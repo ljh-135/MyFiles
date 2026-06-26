@@ -3,56 +3,139 @@
 //  1. 题目数据（同前）
 // ============================================================
 const RAW_TEXT = `
-        1. （ ）是我们理解当前所处历史方位的关键词。
-        A. 新思想
-        B. 新举措
-        C. 新格局
-        D. 新时代
-        2. （ ）和法治素养，是新时代大学生必须具备的基本素质。
-        A. 思想政治素质
-        B. 思想道德素质
-        C. 道德素质
-        D. 个人修养
-        3. "学如弓弩，才如箭镞，识以领之，方能中鹄"这句话告诉我们要（ ）。
-        A. 有本领
-        B. 有担当
-        C. 有责任
-        D. 有理想
-        4. 大学生在大学阶段的首要任务是（ ）。
-        A. 学习
-        B. 笃实
-        C. 立行
-        D. 修德
-        5. 党的十九大，提出了"培养担当（ ）大任的时代新人"的战略要求。
-        A. 国家富强
-        B. 民族复兴
-        C. 社会和谐
-        D. 国富民强
-        6. 青春是用来（ ）的。
-        A. 享受
-        B. 实践
-        C. 奋斗
-        D. 梦想
-        7. 没有崇高的（ ），就会导致精神上的"软骨病"。
-        A. 信仰
-        B. 精神境界
-        C. 精神追求
-        D. 理想信念
-        8. 法律是成文的道德，道德是内心的法律。这句话是要强调（ ）。
-        A. 法律和道德两种规范调节的领域相同
-        B. 法律和道德两种规范的实现方式相同
-        C. 法律和道德两种规范的实施载体相同
-        D. 法律和道德都具有规范社会行为、维护社会秩序的作用
-        9. 法律和道德是维护社会秩序的两种基本手段，下列关于二者关系的说法中，正确的是（ ）。
-        A. 法律是道德形成的基础，能够为道德规范的制定提供依据
-        B. 凡是道德所反对和谴责的行为，必定是法律所制裁的行为
-        C. 法律的调节更具有广泛性，能够渗透到道德不能调节的领域
-        D. 凡是法律所禁止和制裁的行为，通常也是道德所反对和谴责的行为
-        10. 党的十八大以来，在奋进新时代的伟大实践中，以习近平同志为核心的党中央团结带领全国各族人民，实现了第一个百年奋斗目标，在中华大地上（ ），历史性地解决了绝对贫困问题。
-        A. 全面建成小康社会
-        B. 全面建成现代化国家
-        C. 全面实现共同富裕
-        D. 全面完成脱贫攻坚
+        1. 有如下程序： 
+#include<iostream> 
+using namespace std; 
+class Sample { 
+public: 
+    Sample() { } 
+    ~Sample() {cout<<"*";} 
+}; 
+int main() { 
+    Sample temp[2], *pTemp[2]; 
+    return 0; 
+} 
+执行这个程序后，输出星号“*”的个数为（ ）。
+A. 1
+B. 2
+C. 3
+D. 4
+2. 有如下程序： 
+#include<iostream> 
+using namespace std; 
+class DA { 
+    int k; 
+public: 
+    DA(int x=1): k(x) { } 
+    ~DA() { cout<<k;} 
+}; 
+int main() { 
+    DA d[]={DA(3),DA(3),DA(3) }; 
+    DA *p=new DA[2]; 
+    delete []p; 
+    return 0; 
+} 
+程序执行后，输出结果为（ ）。
+A. 11
+B. 2333
+C. 333
+D. 11333
+3. 有如下程序： 
+#include<iostream> 
+using namespace std; 
+class myClass { 
+public: 
+    myClass() { number++; } 
+    ~myClass() { number--; } 
+    static int number; 
+}; 
+int myClass::number=0; 
+int main() { 
+    myClass *ptr; 
+    myClass A,B; 
+    myClass *ptr_Arr = new myClass[3]; 
+    ptr = ptr_Arr; 
+    myClass C; 
+    cout << myClass::number << endl; 
+    delete []ptr; 
+    return 0; 
+} 
+程序执行后，输出结果为（ ）。
+A. 3
+B. 4
+C. 6
+D. 7
+4. 假定 AB 为一个类，px 为指向该类的一个含有 n 个对象的动态数组的指针，则执行语句 delete ［］px; 时，共调用该类析构函数的次数为（ ）。
+A. 0
+B. 1
+C. n
+D. n+1
+5. 有类定义如下： 
+class My Class { 
+public: 
+    MyClass() { cout<<1; } 
+}; 
+执行语句 MyClass a, b[2], *p[2]; 后，程序的输出结果是（ ）。
+A. 11
+B. 111
+C. 1111
+D. 11111
+6. 设有 Point 类定义如下： 
+class Point { 
+    int x，y； 
+public： 
+    Point(int x1=0，int y1=0)：x(x1)，y(y1){} 
+}; 
+执行语句 Point a(2)，b[3]，*c[4]; 时，Point 类的构造函数被调用的次数是（ ）。
+A. 2
+B. 3
+C. 4
+D. 8
+7. Sample 是一个类，执行语句 Sample a[2], *p= new Sample; 后，调用 Sample 类的构造函数的次数是（ ）。
+A. 0
+B. 1
+C. 2
+D. 3
+8. 有如下头文件： 
+int fl(); 
+static int f2(); 
+class MA { 
+public:
+    int f3(); 
+    static int f4(); 
+}; 
+在所描述的函数中，具有隐含的 this 指针的是（ ）。
+A. f1
+B. f2
+C. f3
+D. f4
+9. 有如下程序： 
+#include<iostream> 
+using namespace std; 
+class Fun { 
+public: 
+    static int i; 
+    Fun() {i++;} 
+    int value() { return i-1; } 
+    int value() const { return i+1; } 
+}; 
+int Fun::i=2; 
+int main() { 
+    Fun fun1; 
+    const Fun fun2; 
+    cout << fun1.value() << fun2.value() << Fun::i << endl; 
+    return 0; 
+} 
+程序执行后，输出结果为（ ）。
+A. 112
+B. 132
+C. 334
+D. 354
+10. 由于常对象不能被更新，因此（ ）。
+A. 通过常对象只能调用它的常成员函数
+B. 通过常对象只能调用静态成员函数
+C. 常对象的成员都是常成员
+D. 通过常对象可以调用任何不改变对象值的成员函数
         16. 人生价值评价的根本尺度，是看一个人的人生活动（ ），是否促进了历史的进步。
         A. 是否促进个人的发展
         B. 是否符合社会发展的客观规律
