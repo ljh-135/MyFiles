@@ -812,10 +812,12 @@ body {
 .stat-footer {
     padding: 16px 24px;
     border-top: 1px solid var(--border);
+    display: flex;
+    gap: 12px;
 }
 
 .btn-clear {
-    width: 100%;
+    flex: 1;
     background: rgba(239, 68, 68, 0.1);
     color: var(--error);
     border: 1px solid var(--error);
@@ -828,5 +830,22 @@ body {
 
 .btn-clear:hover {
     background: var(--error);
+    color: white;
+}
+
+.btn-download {
+    flex: 1;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    padding: 12px;
+    border-radius: 10px;
+    font-size: 0.9375rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-download:hover {
+    background: var(--primary);
     color: white;
 }
