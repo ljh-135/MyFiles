@@ -56,6 +56,7 @@ class QuizApp {
             statSkipped: document.getElementById('statSkipped'),
             statList: document.getElementById('statList'),
             clearBtn: document.getElementById('clearBtn'),
+            downloadBtn: document.getElementById('downloadBtn'),
             // =====  🆕 公告弹窗元素  =====
             announcementModal: document.getElementById('announcementModal'),
             announcementCloseBtn: document.getElementById('announcementCloseBtn'),
@@ -98,6 +99,9 @@ class QuizApp {
         });
         this.elements.clearBtn.addEventListener('click', () =>
             this.clearRecords()
+        );
+        this.elements.downloadBtn.addEventListener('click', () =>
+            this.downloadWrongQuestions()
         );
 
         // =====  🆕 公告弹窗事件  =====
@@ -460,6 +464,51 @@ class QuizApp {
 
     hideStat() {
         this.elements.statModal.style.display = 'none';
+    }
+
+    downloadWrongQuestions() {
+        const wrongQuestions = [];
+        this.questions.forEach((q) => {
+            const record = this.answerRecords[q.id];
+            if (record && !record.isCorrect) {
+                wrongQuestions.push({ q, record });
+            }
+        });
+
+        if (wrongQuestions.length === 0) {
+            alert('暂无错题记录');
+            return;
+        }
+
+        let content = '';
+        wrongQuestions.forEach(({ q, record }, i) => {
+            content += `===== 错题 ${i + 1} =====\n`;
+            content += `【题目】\n${q.question}\n\n`;
+            if (q.type === 'choice' && q.options) {
+                content += `【选项】\n`;
+                const letters = ['A', 'B', 'C', 'D'];
+                q.options.forEach((opt, idx) => {
+                    content += `${letters[idx]}. ${opt}\n`;
+                });
+                content += `\n`;
+            }
+            content += `【你的答案】${record.userAnswer}\n`;
+            content += `【正确答案】${record.correctAnswer}\n`;
+            if (q.explanation) {
+                content += `【解析】${q.explanation}\n`;
+            }
+            content += `\n`;
+        });
+
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `错题本_${new Date().toLocaleDateString()}.txt`;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
     }
 
     clearRecords() {
